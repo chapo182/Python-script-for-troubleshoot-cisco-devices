@@ -3,6 +3,7 @@ import cmd
 import sys
 import time
 import os
+import telnetlib
 
 
 def conexion(ip):
@@ -16,7 +17,21 @@ def conexion(ip):
 	print "[+] Connecting........"
 	return versionUptime(chan, hostname)
 	print u"\x1b[0m"
-	
+
+def  conexionTelnet(ip):
+        user = "test"
+        password = "test"
+        telnet = telnetlib.Telnet(ip)
+        telnet.read_until("Username: ", 3)
+        telnet.write(user + '\r')
+        telnet.read_until("Password: ", 3)
+        telnet.write(password + '\r')
+        telnet.write("term length 0"+ "\r\n")
+        telnet.write("show clock"+ "\r\n")
+        telnet.write("show version | i uptime" + "\r\n")
+        telnet.write('exit' '\r\n')
+        print telnet.read_all()
+        print main()
 
 def versionUptime(chan, hostname):
 	hostname = hostname + '#'
@@ -56,7 +71,7 @@ def main():
 		test = os.system('ping ' '-c 5 -W 1 '+ str(ip) + ' >  /dev/null')
 		if not test:
 			print u"\033[92m [+] Device Reachable........"
-			conexion(ip)
+			conexionTelnet(ip)
 		else:
 			print "[-] Device Unreachable"
 			main()

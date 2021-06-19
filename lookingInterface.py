@@ -72,7 +72,7 @@ def logs(chan, hostname, interface):
 
 print ("############################################")
 print ("#            osisecurite.com               #")
-print ("#                by chapo182               #")
+print ("#              by chapo182                 #")
 print ("#                                          #")
 print ("############################################\n")
 

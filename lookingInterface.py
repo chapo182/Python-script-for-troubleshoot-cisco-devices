@@ -4,6 +4,12 @@ import sys
 import time
 import os
 
+"""
+After 7 years I will make better this code 
+now in use for devnet basic training and
+python understanding
+"""
+
 def conexion(ip):
 	hostname = raw_input("Enter the hostname\n")
 	que = raw_input("Please Enter Interface that you are looking for \n")
